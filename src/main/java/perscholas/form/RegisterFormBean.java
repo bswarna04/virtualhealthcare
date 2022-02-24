@@ -23,6 +23,7 @@ public class RegisterFormBean {
     private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd" )
     private Date dateOfBirth;
+    private String phoneNumber;
     @Pattern(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$", message = "Invalid email format")
     private String email;
     private String password;

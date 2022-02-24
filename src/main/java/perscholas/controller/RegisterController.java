@@ -37,6 +37,7 @@ public class RegisterController {
             form.setFirstName(user.getFirstName());
             form.setLastName(user.getLastName());
             form.setDateOfBirth(user.getDateOfBirth());
+            form.setPhoneNumber(user.getPhoneNumber());
             form.setEmail(user.getEmail());
             form.setPassword(user.getPassword());
 
@@ -78,6 +79,7 @@ public class RegisterController {
                 user.setFirstName(form.getFirstName());
                 user.setLastName(form.getLastName());
                 user.setDateOfBirth(form.getDateOfBirth());
+                user.setPhoneNumber(form.getPhoneNumber());
                 user.setEmail(form.getEmail());
                 user.setPassword(form.getPassword());
 

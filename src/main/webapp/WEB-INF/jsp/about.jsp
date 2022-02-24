@@ -10,7 +10,7 @@
             <div class="col-md-6 content" >
 
                 <div class="box">
-                    <h3> <i class="fas fa-stethoscope"></i><a href="appointments.html">Virtual Appointments</a></h3>
+                    <h3> <i class="fas fa-stethoscope"></i><a href="/appointmentform">Virtual Appointments</a></h3>
                     <p>Get virtual consultation anywhere from the world</p>
                 </div>
                 <div class="box">
@@ -21,7 +21,7 @@
             </div>
 
             <div class="col-md-6 d-none d-md-block" >
-                <img src="../images/Doctors-pana.png" width="100%" alt="img1">
+                <img src="/pub/images/Doctors-pana.png" width="100%" alt="img1">
             </div>
 
         </div>

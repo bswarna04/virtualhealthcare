@@ -17,4 +17,11 @@ public class IndexController {
         response.setViewName("index");
         return response;
     }
+
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+    public ModelAndView about(HttpServletRequest request, HttpSession session) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("/about");
+        return response;
+    }
 }

@@ -25,9 +25,36 @@
         <nav class="nav">
             <ul>
                     <li><a href="/index" >Home</a></li>
-                <li><a href="about.html" target="_parent">About</a></li>
-                <li><a href="doctors.html" target="_parent">Doctors</a></li>
-                <li><a href="appointments.html" target="_parent">appointments</a></li>
+                <li><a href="/about" target="_parent">About</a></li>
+                <li><a href="/doctors" target="_parent">Doctors</a></li>
+                <li>
+<%--                    <a href="/appointments" target="_parent">Appointments</a>--%>
+                    <div class="dropdown">
+                        <button class="dropbtn">Appointments</button>
+                        <div class="dropdown-content">
+                            <a href="/appointmentform">Make an appointment</a>
+                            <sec:authorize access="isAuthenticated()">
+                            <a href="/appointmentList">View appointments </a>
+                            </sec:authorize>
+                        </div>
+                    </div>
+
+                </li>
+                <sec:authorize access="hasAnyAuthority('ADMIN', 'USER')">
+
+<%--                    <li><a href="/user/fileUpload">Upload Records</a></li>--%>
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn">Records</button>
+                            <div class="dropdown-content">
+                                <a href="/user/fileUpload">Upload records</a>
+                                <a href="/user/fileUpload">View records</a>
+
+                            </div>
+                        </div>
+                    </li>
+
+                </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     <li><a href="/login/logout">Signout</a></li>
 
@@ -36,8 +63,7 @@
                     <li><a href="/login/login">Signin</a></li>
 
                 </sec:authorize>
-<%--                <li><a href="login/login" target="_parent">Sign in</a></li>--%>
-<%--                <li><a href="/logout">Signout</a></li>--%>
+
             </ul>
         </nav>
 
