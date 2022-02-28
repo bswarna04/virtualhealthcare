@@ -3,6 +3,7 @@ package perscholas.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -23,6 +24,10 @@ public class RegisterController {
 
     @Autowired
     private UserDAO userDao;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register(@RequestParam(required = false) Integer id) throws Exception {
@@ -56,16 +61,17 @@ public class RegisterController {
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult errors) throws Exception {
 
         ModelAndView response = new ModelAndView();
-        response.setViewName("/signup/registerSubmit");
+
 
         if (errors.hasErrors()) {
 
             for (FieldError error : errors.getFieldErrors()) {
                 form.getErrorMessages().add(error.getDefaultMessage());
-                System.out.println("error field = " + error.getField() + " message = " + error.getDefaultMessage());
+//                System.out.println("error field = " + error.getField() + " message = " + error.getDefaultMessage());
             }
 
             response.addObject("formBeanKey", form);
+            response.setViewName("/signup/register");
 
         } else {
 
@@ -81,7 +87,9 @@ public class RegisterController {
                 user.setDateOfBirth(form.getDateOfBirth());
                 user.setPhoneNumber(form.getPhoneNumber());
                 user.setEmail(form.getEmail());
-                user.setPassword(form.getPassword());
+
+                String encryptedPassword = passwordEncoder.encode(form.getPassword());
+                user.setPassword(encryptedPassword);
 
                 userDao.save(user);
 
@@ -91,6 +99,8 @@ public class RegisterController {
 
                 response.addObject("reg_response", "User already exists.");
             }
+
+            response.setViewName("/signup/registerSubmit");
 
         }
 

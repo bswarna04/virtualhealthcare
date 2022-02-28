@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="../include/header.jsp" />
 
@@ -9,6 +10,8 @@
 
 
             <h1 class="heading"><span> make an appointment</span></h1>
+
+
 
             <div class="col-md-10" >
 
@@ -62,6 +65,7 @@
                 </form>
 
             </div>
+
 
         </div>
 

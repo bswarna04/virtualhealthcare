@@ -60,7 +60,18 @@
 
                 </sec:authorize>
                 <sec:authorize access="!isAuthenticated()">
-                    <li><a href="/login/login">Signin</a></li>
+<%--                    <li><a href="/login/login">Signin</a></li>--%>
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn">Signin</button>
+                            <div class="dropdown-content">
+                                <a href="/login/login">Signin</a>
+                                <a href="/register">Signup</a>
+
+                            </div>
+                        </div>
+                    </li>
+
 
                 </sec:authorize>
 

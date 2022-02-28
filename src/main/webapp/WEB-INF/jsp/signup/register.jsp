@@ -77,17 +77,21 @@
 
         </form>
 
+        <div style="color:red">
+            <c:forEach items="${formBeanKey.errorMessages}" var="message">
+                <span style="color:red">${message}</span><br>
+            </c:forEach>
+
+
+        </div>
+
 
     </div>
 
+
+
 </section>
 
-<div style="color:red">
-    <c:forEach items="${formBeanKey.errorMessages}" var="message">
-        <span style="color:red">${message}</span><br>
-    </c:forEach>
 
-
-</div>
 
 <jsp:include page="../include/footer.jsp" />

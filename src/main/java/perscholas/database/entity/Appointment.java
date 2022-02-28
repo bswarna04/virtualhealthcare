@@ -26,11 +26,16 @@ public class Appointment {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "patient_id")
-    private Integer patientId;
+//    @Column(name = "patient_id")
+//    private Integer patientId;
+//
+//    @Column(name = "doctor_id")
+//    private Integer doctorId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User patient;
 
-    @Column(name = "doctor_id")
-    private Integer doctorId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Doctor doctor;
 
     @Column(name = "message")
     private String message ;

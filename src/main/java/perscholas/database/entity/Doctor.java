@@ -31,5 +31,15 @@ public class Doctor {
     @Column(name = "doctorimg")
     private String doctorimg ;
 
-
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", specialization='" + specialization + '\'' +
+                ", doctorimg='" + doctorimg + '\'' +
+                '}';
+    }
 }

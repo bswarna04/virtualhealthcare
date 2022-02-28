@@ -30,28 +30,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-
-                // ** TODO THESE 2 LINES WILL PROBABLY NEED TO BE CHANGED FOR YOUR PROJECT **
                // .antMatchers("/pub/**", "/error/**", "/login/**","/search").permitAll()
-                .antMatchers("/**").permitAll()
-//               .antMatchers("/login/**").authenticated()
-                .anyRequest().authenticated()
+                .antMatchers("/login/**").permitAll()
+                .antMatchers("/appointment*").authenticated()
                 .and()
                 .formLogin()
-
-                // TODO create a controller method for this URL
                 .loginPage("/login/login")
-
-                // TODO make your login page form action point to this URL with a method = POST
                 .loginProcessingUrl("/login/loginSecurityPost")
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
 
-                // TODO make your logout link in your header point to this URL
                 .logoutUrl("/login/logout")
 
-                // TODO implement a method in your LoginController to set the view for this URL
                 .logoutSuccessUrl("/login/logoutSuccess")
                 .and()
                 .exceptionHandling()

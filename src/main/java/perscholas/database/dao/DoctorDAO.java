@@ -16,4 +16,6 @@ public interface DoctorDAO extends JpaRepository<Doctor, Long> {
     public List<Doctor> findByLastName(@Param("lastName") String lastName);
     public List<Doctor> findByFirstNameIgnoreCaseAndLastNameIgnoreCase(@Param("firstName") String firstName, @Param("lastName") String lastName);
     public List<Doctor> findByFirstNameIgnoreCaseOrLastNameIgnoreCase(@Param("firstName") String firstName, @Param("lastName") String lastName);
+
+
 }

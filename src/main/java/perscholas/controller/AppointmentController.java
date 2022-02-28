@@ -2,6 +2,7 @@ package perscholas.controller;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import perscholas.database.dao.AppointmentDAO;
+import perscholas.database.dao.DoctorDAO;
 import perscholas.database.dao.UserDAO;
 import perscholas.database.entity.Appointment;
 import perscholas.database.entity.User;
@@ -26,6 +28,9 @@ public class AppointmentController {
 
     @Autowired
     private UserDAO userDao;
+
+    @Autowired
+    private DoctorDAO doctorDAODao;
 
     @Autowired
     private AppointmentDAO appointmentDao;
@@ -67,8 +72,8 @@ public class AppointmentController {
          appointment.setApptDate(form.getApptDate());
          appointment.setApptTime(form.getApptTime());
          appointment.setStatus(form.getStatus());
-         appointment.setPatientId(form.getPatientId());
-         appointment.setDoctorId(form.getDoctorId());
+         appointment.setPatient(userDao.findById(form.getPatientId()));
+         appointment.setDoctor(doctorDAODao.findById(form.getDoctorId()));
          appointment.setMessage(form.getMessage());
          appointmentDao.save(appointment);
 
@@ -82,15 +87,32 @@ public class AppointmentController {
 
     @RequestMapping(value = "/appointmentList", method = RequestMethod.GET)
     public ModelAndView appointmentList() throws Exception {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         ModelAndView response = new ModelAndView();
         response.setViewName("/appointment/appointmentList");
 
 //        if (!StringUtils.isEmpty(search)) {
-            List<Appointment> appointments = appointmentDao.findAll();
+//            List<Appointment> appointments = appointmentDao.findAll();
+            List<Appointment> appointments = appointmentDao.findAllByPatient(userDao.findByUserName(userName));
             response.addObject("appointmentListKey", appointments);
 //            response.addObject("searchInput", search);
 //        }
 
         return response;
     }
+
+
+//    @RequestMapping(value = "/cancelAppointment", method = RequestMethod.GET)
+//    public ModelAndView cancel(@RequestParam Integer id) throws Exception {
+//
+//        ModelAndView response = new ModelAndView();
+//        response.setViewName("/appointment/appointments");
+//
+//        Appointment cancel= appointmentDao.findById(id);
+//        if(cancel !=null){
+//            appointmentDao.delete(cancel);
+//        }
+//        return response;
+//    }
+
 }
