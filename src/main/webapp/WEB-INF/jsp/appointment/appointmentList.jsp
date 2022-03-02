@@ -24,8 +24,7 @@
         <td><b>AppointmentDate</b></td>
         <td><b>AppointmentTime</b></td>
         <td><b>Status</b></td>
-<%--        <td><b>Edit</b></td>--%>
-<%--        <td><b>Delete</b></td>--%>
+        <td><b>Edit</b></td>
 
     </tr>
     <c:forEach items="${appointmentListKey}" var="appointment">
@@ -38,12 +37,31 @@
 <%--            <td><fmt:formatDate  value = "${appointment.apptTime}"/></td>--%>
             <td>${appointment.apptTime}</td>
             <td>${appointment.status}</td>
-<%--            <td><a href="/registration-url-path/register?id=${appointment.id}">Edit</a></td>--%>
-<%--            <td><a href="/registration-url-path/deleteUser?id=${appointment.id}">Delete</a></td>--%>
 
-<%--        </tr>--%>
+            <c:set var = "status" value = "${appointment.status}"/>
+            <c:if test = "${status == 'Scheduled'}">
+                    <td><a class="btn btn-primary"  role="button" onclick="myFunction()"
+                           href="/cancelAppointment?id=${appointment.id}">Cancel</a></td>
+            </c:if>
+
+
+
+
+        </tr>
     </c:forEach>
+        </form>
 </div>
+
 </section>
+<script>
+    function myFunction() {
+        confirm("Are you sure you want to cancel the appointment?");
+
+    }
+
+    function myFunction1() {
+        document.getElementById("myBtn").disabled = true;
+    }
+</script>
 
 

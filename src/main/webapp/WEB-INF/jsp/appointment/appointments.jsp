@@ -58,7 +58,7 @@
                     <textarea name="message" cols="30" rows="10" value="${formBeanKey.message}" placeholder="message ( optional )"></textarea><br><br>
                     <div class>
                         <input type="submit" name="" id="sid" value="make appointment" class="button">
-                        <input type="submit" name="" id="cancel" value="cancel appointment" class="button">
+<%--                        <input type="submit" name="" id="cancel" value="cancel appointment" class="button">--%>
                     </div>
 
 

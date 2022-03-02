@@ -8,13 +8,24 @@
 
         <form method="POST" enctype="multipart/form-data" action="/user/fileUploadSubmit">
 
-
             <div class="inputBox">
 
-                <input type="text" name="filetitle" placeholder="Enter title" required><br><br>
-
-
+                <select name="recordType" required>
+                    <option value="RT" disabled selected>Select RecordType</option>
+                    <option value="EHR">Electronic Health Record</option>
+                    <option value="HX">Medical History</option>
+                    <option value="PE">Physical Examination</option>
+                    <option value="PO">Physicians Order</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
+
+<%--            <div class="inputBox">--%>
+
+<%--                <input type="text" name="filetitle" placeholder="Enter title" required><br><br>--%>
+
+
+<%--            </div>--%>
 
             <div class="inputBox">
 

@@ -28,7 +28,6 @@
                 <li><a href="/about" target="_parent">About</a></li>
                 <li><a href="/doctors" target="_parent">Doctors</a></li>
                 <li>
-<%--                    <a href="/appointments" target="_parent">Appointments</a>--%>
                     <div class="dropdown">
                         <button class="dropbtn">Appointments</button>
                         <div class="dropdown-content">
@@ -42,13 +41,12 @@
                 </li>
                 <sec:authorize access="hasAnyAuthority('ADMIN', 'USER')">
 
-<%--                    <li><a href="/user/fileUpload">Upload Records</a></li>--%>
                     <li>
                         <div class="dropdown">
                             <button class="dropbtn">Records</button>
                             <div class="dropdown-content">
                                 <a href="/user/fileUpload">Upload records</a>
-                                <a href="/user/fileUpload">View records</a>
+                                <a href="/viewrecords">View records</a>
 
                             </div>
                         </div>
@@ -60,7 +58,6 @@
 
                 </sec:authorize>
                 <sec:authorize access="!isAuthenticated()">
-<%--                    <li><a href="/login/login">Signin</a></li>--%>
                     <li>
                         <div class="dropdown">
                             <button class="dropbtn">Signin</button>

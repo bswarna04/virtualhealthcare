@@ -38,7 +38,8 @@ public class AppointmentController {
     @RequestMapping(value = "/appointmentform", method = RequestMethod.GET)
     public ModelAndView appointmentform(HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
-        response.setViewName("/appointment/appointments");
+       // response.setViewName("/appointment/appointments");
+        response.setViewName("redirect:/doctors");
         return response;
     }
 
@@ -102,17 +103,19 @@ public class AppointmentController {
     }
 
 
-//    @RequestMapping(value = "/cancelAppointment", method = RequestMethod.GET)
-//    public ModelAndView cancel(@RequestParam Integer id) throws Exception {
-//
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("/appointment/appointments");
-//
-//        Appointment cancel= appointmentDao.findById(id);
-//        if(cancel !=null){
-//            appointmentDao.delete(cancel);
-//        }
-//        return response;
-//    }
+    @RequestMapping(value = "/cancelAppointment", method = RequestMethod.GET)
+    public ModelAndView cancel(@RequestParam Integer id) throws Exception {
+
+        ModelAndView response = new ModelAndView();
+        response.setViewName("redirect:/appointmentList");
+
+        Appointment cancel= appointmentDao.findById(id);
+        if(cancel !=null){
+            cancel.setStatus("Cancelled");
+            appointmentDao.save(cancel);
+
+        }
+        return response;
+    }
 
 }
