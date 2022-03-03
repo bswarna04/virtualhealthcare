@@ -1,10 +1,8 @@
 package perscholas.controller;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +13,6 @@ import perscholas.database.dao.UserDAO;
 import perscholas.database.entity.Appointment;
 import perscholas.database.entity.User;
 import perscholas.form.AppointmentFormBean;
-import perscholas.form.RegisterFormBean;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,7 +35,6 @@ public class AppointmentController {
     @RequestMapping(value = "/appointmentform", method = RequestMethod.GET)
     public ModelAndView appointmentform(HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
-       // response.setViewName("/appointment/appointments");
         response.setViewName("redirect:/doctors");
         return response;
     }
@@ -64,7 +60,6 @@ public class AppointmentController {
 
     @RequestMapping(value = "/appointmentSubmit", method = RequestMethod.GET)
     public ModelAndView appointmentSubmit(@Valid AppointmentFormBean form ) throws Exception {
-//        System.out.println("appointment date :" +form.getApptDate() + form.getDoctorId()+form.getPatientId()) ;
         ModelAndView response = new ModelAndView();
 
          Appointment appointment=new Appointment();
@@ -92,12 +87,8 @@ public class AppointmentController {
         ModelAndView response = new ModelAndView();
         response.setViewName("/appointment/appointmentList");
 
-//        if (!StringUtils.isEmpty(search)) {
-//            List<Appointment> appointments = appointmentDao.findAll();
             List<Appointment> appointments = appointmentDao.findAllByPatient(userDao.findByUserName(userName));
             response.addObject("appointmentListKey", appointments);
-//            response.addObject("searchInput", search);
-//        }
 
         return response;
     }

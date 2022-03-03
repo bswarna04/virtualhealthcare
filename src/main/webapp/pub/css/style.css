@@ -338,9 +338,9 @@ header .fa-bars{
 
 .footer{
     background:var(--black);
-    /*position: absolute;*/
-    /*bottom: 0px;*/
-    /*width: 100%;*/
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
 
 .footer .credit{

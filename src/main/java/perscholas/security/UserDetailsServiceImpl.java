@@ -27,7 +27,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = userDao.findByEmail(username);
         User user = userDao.findByUsernameIgnoreCase(username);
 
         if (user == null) {
@@ -38,14 +37,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // check the account status
         boolean accountIsEnabled = true;
-
-       // accountIsEnabled = user.isActive();
-
-        // spring security configs
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
-       // List<UserRole> userRoles = userDao.getUserRoles(user.getId());
 
         Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
 
@@ -53,15 +47,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 accountNonExpired, credentialsNonExpired, accountNonLocked, springRoles);
     }
 
-
-
     private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<UserRole> userRoles) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
         for (UserRole role : userRoles) {
             authorities.add(new SimpleGrantedAuthority(role.getUserRole().toString()));
         }
-
 
         return authorities;
     }

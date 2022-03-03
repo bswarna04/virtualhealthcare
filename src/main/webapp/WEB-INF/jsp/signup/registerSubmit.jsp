@@ -10,7 +10,7 @@
 <div>
 
 <h2>${reg_response}
-<%--    <h2>${signin_response}--%>
+
     <span><a href="/login/login">Signin here</a></span>
 
     </h2>
@@ -19,8 +19,6 @@
     </div>
 
 </section>
-
-
 
 
 <jsp:include page="../include/footer.jsp" />

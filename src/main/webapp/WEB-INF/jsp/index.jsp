@@ -24,6 +24,8 @@
 
 </section>
 
+<script src="pub/js/main.js"></script>
+
 
 
 <jsp:include page="include/footer.jsp" />

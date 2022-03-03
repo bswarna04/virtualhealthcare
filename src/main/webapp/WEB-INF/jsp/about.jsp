@@ -14,7 +14,7 @@
                     <p>Get virtual consultation anywhere from the world</p>
                 </div>
                 <div class="box">
-                    <h3> <i class="fas fa-stethoscope"></i><a href="/viewrecords">Access Medical Records</a></h3>
+                    <h3> <i class="fas fa-stethoscope"></i><a href="/viewrecords?editRecID=0">Access Medical Records</a></h3>
                     <p>Upload or Retrieve your medical records</p>
                 </div>
 

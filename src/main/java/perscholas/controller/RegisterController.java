@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import perscholas.database.dao.UserDAO;
+import perscholas.database.dao.UserRoleDAO;
 import perscholas.database.entity.User;
+import perscholas.database.entity.UserRole;
 import perscholas.form.RegisterFormBean;
 
 import javax.validation.Valid;
@@ -24,6 +26,9 @@ public class RegisterController {
 
     @Autowired
     private UserDAO userDao;
+
+    @Autowired
+    private UserRoleDAO userRoleDao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -67,7 +72,6 @@ public class RegisterController {
 
             for (FieldError error : errors.getFieldErrors()) {
                 form.getErrorMessages().add(error.getDefaultMessage());
-//                System.out.println("error field = " + error.getField() + " message = " + error.getDefaultMessage());
             }
 
             response.addObject("formBeanKey", form);
@@ -92,6 +96,15 @@ public class RegisterController {
                 user.setPassword(encryptedPassword);
 
                 userDao.save(user);
+
+                if ( form.getId() == null ) {
+                    UserRole ur = new UserRole();
+
+                    ur.setUser(user);
+                    ur.setUserRole("USER");
+
+                    userRoleDao.save(ur);
+                }
 
                 response.addObject("reg_response", "Successfully registered");
 

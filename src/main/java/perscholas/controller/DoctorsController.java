@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import perscholas.database.dao.DoctorDAO;
 import perscholas.database.entity.Doctor;
-import perscholas.security.UserDetailsServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,7 +22,6 @@ public class DoctorsController {
     @Autowired
     private DoctorDAO doctorDao;
 
-
     @RequestMapping(value = "/doctors", method = RequestMethod.GET)
     public ModelAndView doctors(HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -36,10 +34,7 @@ public class DoctorsController {
         doctorList.forEach( (n) -> {
             LOG.info(String.valueOf(n));
 
-
-
         });
-
 
         return response;
     }

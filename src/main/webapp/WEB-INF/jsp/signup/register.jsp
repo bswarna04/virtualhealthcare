@@ -4,27 +4,13 @@
 
 <jsp:include page="../include/header.jsp" />
 
-
-<%--<c:choose>--%>
-<%--    <c:when test="${empty formBeanKey.id}">--%>
-<%--        <h3>Create New User</h3>--%>
-<%--    </c:when>--%>
-<%--    <c:otherwise>--%>
-<%--        <h3>Edit User</h3>--%>
-<%--    </c:otherwise>--%>
-<%--</c:choose>--%>
-
-
 <section class="signup" id="signup">
 
     <div class="container min-vh-100">
 
-
-
         <h3 class="heading"><span> Signup</span></h3>
 
         <form  id="signupform" action="/registerSubmit" method="GET">
-<%--        <form  id="signupform" value="/registerSubmit" method="GET">--%>
 
             <div class="inputBox">
                 <input type="hidden"  name="id" value="${formBeanKey.id}">
@@ -82,16 +68,12 @@
                 <span style="color:red">${message}</span><br>
             </c:forEach>
 
-
         </div>
 
-
     </div>
-
-
 
 </section>
 
 
 
-<jsp:include page="../include/footer.jsp" />
+<%--<jsp:include page="../include/footer.jsp" />--%>

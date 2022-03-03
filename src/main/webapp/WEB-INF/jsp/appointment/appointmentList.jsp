@@ -14,9 +14,7 @@
 
 <div >
 
-
-
-<table class="table table-striped">
+    <table class="table table-striped">
     <tr>
         <td><b>Id</b></td>
         <td><b>PatientName</b></td>
@@ -34,7 +32,6 @@
             <td>${appointment.patient.firstName} ${appointment.patient.lastName}</td>
             <td>${appointment.doctor.firstName} ${appointment.doctor.lastName}</td>
             <td><fmt:formatDate pattern="MM-dd-yyyy" value = "${appointment.apptDate}"/></td>
-<%--            <td><fmt:formatDate  value = "${appointment.apptTime}"/></td>--%>
             <td>${appointment.apptTime}</td>
             <td>${appointment.status}</td>
 
@@ -43,9 +40,6 @@
                     <td><a class="btn btn-primary"  role="button" onclick="myFunction()"
                            href="/cancelAppointment?id=${appointment.id}">Cancel</a></td>
             </c:if>
-
-
-
 
         </tr>
     </c:forEach>
@@ -57,10 +51,6 @@
     function myFunction() {
         confirm("Are you sure you want to cancel the appointment?");
 
-    }
-
-    function myFunction1() {
-        document.getElementById("myBtn").disabled = true;
     }
 </script>
 

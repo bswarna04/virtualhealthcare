@@ -10,10 +10,6 @@
 
             <h1 style="color:red">${errorMessage}</h1>
 
-<%--        <form  id="signinform" action="/loginSubmit" method="get">--%>
-
-<%--&lt;%&ndash;            <h1 style="color:red">${errorMessage}</h1>&ndash;%&gt;--%>
-
             <div class="inputBox">
                 <input type="text" name="username" placeholder="Enter Username" required>
 
@@ -31,14 +27,6 @@
         </form>
 
     </div>
-
-<%--    <div>--%>
-
-<%--        <h2>${signin_response}--%>
-<%--&lt;%&ndash;            <span><a href="/signin">Signin here</a></span>&ndash;%&gt;--%>
-
-<%--        </h2>--%>
-<%--    </div>--%>
 
 </section>
 

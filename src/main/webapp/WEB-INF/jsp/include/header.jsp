@@ -45,8 +45,10 @@
                         <div class="dropdown">
                             <button class="dropbtn">Records</button>
                             <div class="dropdown-content">
+                                <sec:authorize access="hasAnyAuthority('USER')">
                                 <a href="/user/fileUpload">Upload records</a>
-                                <a href="/viewrecords">View records</a>
+                                </sec:authorize>
+                                <a href="/viewrecords?editRecID=0">View records</a>
 
                             </div>
                         </div>

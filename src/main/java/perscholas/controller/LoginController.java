@@ -20,7 +20,6 @@ public class LoginController {
     private UserDAO userDao;
 
     @RequestMapping(value = "/login/login", method = RequestMethod.GET)
-//    @RequestMapping("/login/login")
     public ModelAndView login(HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("login/login");

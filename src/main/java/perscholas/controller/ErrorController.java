@@ -16,9 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ErrorController {
 
-    //@Autowired
-    //private AuthenticatedUserService authenticatedUserService;
-
     @RequestMapping(value = "/error/404")
     public String error404(HttpServletRequest request) {
 
@@ -31,12 +28,6 @@ public class ErrorController {
     @ExceptionHandler(AccessDeniedException.class)
     public ModelAndView accessDenied(HttpServletRequest request, Exception ex) {
         ModelAndView model = new ModelAndView("error/404");
-
-        //if (authenticatedUserService.isAuthenticated()) {
-        //	log.error("User : " + authenticatedUserService.getCurrentUsername() + " requested url that they do not have permission to " + request.getRequestURL() + " from IP address " + WebUtils.getIpAddress(request));
-        //} else {
-        //	log.error("Unauthenticated user requested url that they do not have permission to " + request.getRequestURL() + " from IP address " + WebUtils.getIpAddress(request));
-        //}
 
         log.error(ex.getMessage());
 
@@ -51,11 +42,9 @@ public class ErrorController {
 
         String stackTrace = getHTMLStackTrace(ex);
 
-        //if (authenticatedUserService.isUserInRole(UserRoleEnum.ADMIN.toString())) {
         model.addObject("message", ex.getMessage());
         model.addObject("stackTrace", stackTrace);
-        //}
-
+        
         return model;
     }
 

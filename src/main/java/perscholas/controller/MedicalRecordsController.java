@@ -2,6 +2,7 @@ package perscholas.controller;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,12 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import perscholas.database.dao.MedicalRecordDAO;
 import perscholas.database.dao.UserDAO;
-import perscholas.database.entity.Appointment;
 import perscholas.database.entity.MedicalRecord;
-import perscholas.database.entity.User;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -28,12 +25,19 @@ public class MedicalRecordsController {
     private UserDAO userDAO;
 
     @RequestMapping(value = "/viewrecords", method = RequestMethod.GET)
-    public ModelAndView viewrecords(HttpServletRequest request, HttpSession session) throws Exception {
+    public ModelAndView viewrecords(@RequestParam Integer editRecID) throws Exception {
         ModelAndView response = new ModelAndView();
-        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        List<MedicalRecord> medicalRecords = medicalRecordDao.findAllByPatient(userDAO.findByUserName(userName));
+        List<MedicalRecord> medicalRecords;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            medicalRecords = medicalRecordDao.findAll();
+        } else {
+            medicalRecords = medicalRecordDao.findAllByPatient(userDAO.findByUserName(auth.getName()));
+        }
+
         response.setViewName("/user/medicalRecords");
         response.addObject("recordsKey", medicalRecords);
+        response.addObject("editRecID",editRecID);
         return response;
     }
 
@@ -57,11 +61,25 @@ public class MedicalRecordsController {
 
         ModelAndView response = new ModelAndView();
         //  response.setViewName("redirect:/registration-url-path/userList");
-        response.setViewName("redirect:/viewrecords");
+        response.setViewName("redirect:/viewrecords?editRecID=0");
         MedicalRecord delete= medicalRecordDao.findById(id);
         if(delete !=null){
             medicalRecordDao.delete(delete);
         }
+        return response;
+    }
+
+    @RequestMapping(value = "/saveRecord", method = RequestMethod.GET)
+    public ModelAndView editRecord(@RequestParam Integer editID, @RequestParam String recordType) throws Exception {
+
+        ModelAndView response = new ModelAndView();
+        MedicalRecord editRecord = medicalRecordDao.findById(editID);
+        editRecord.setRecordType(recordType);
+        if(editRecord !=null){
+            medicalRecordDao.save(editRecord);
+        }
+        response.setViewName("redirect:/viewrecords?editRecID=0");
+//        response.addObject("editRecID",0);
         return response;
     }
 }
