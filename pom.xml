@@ -50,17 +50,6 @@
 			<artifactId>spring-security-taglibs</artifactId>
 		</dependency>
 
-		<!-- webservices -->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-web-services</artifactId>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>wsdl4j</groupId>-->
-<!--			<artifactId>wsdl4j</artifactId>-->
-<!--			<version>1.6.2</version>-->
-<!--		</dependency>-->
-
 		<!--	database-->
 
 		<dependency>
