@@ -1,6 +1,7 @@
 package perscholas.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,12 +84,17 @@ public class AppointmentController {
 
     @RequestMapping(value = "/appointmentList", method = RequestMethod.GET)
     public ModelAndView appointmentList() throws Exception {
-        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<Appointment> appointments;
         ModelAndView response = new ModelAndView();
         response.setViewName("/appointment/appointmentList");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            appointments = appointmentDao.findAll();
+        } else {
+            appointments = appointmentDao.findAllByPatient(userDao.findByUserName(auth.getName()));
+        }
 
-            List<Appointment> appointments = appointmentDao.findAllByPatient(userDao.findByUserName(userName));
-            response.addObject("appointmentListKey", appointments);
+        response.addObject("appointmentListKey", appointments);
 
         return response;
     }
