@@ -56,9 +56,10 @@
 
 
                     <textarea name="message" cols="30" rows="10" value="${formBeanKey.message}" placeholder="message ( optional )"></textarea><br><br>
+
                     <div class>
-                        <input type="submit" name="" id="sid" value="make appointment" class="button">
-<%--                        <input type="submit" name="" id="cancel" value="cancel appointment" class="button">--%>
+                        <input type="submit"  id="sid" value="make appointment" class="button">
+                      <input type="submit"  id="cancel" value="cancel appointment" class="button" onclick=" relocate_home()">
                     </div>
 
 
@@ -72,5 +73,12 @@
     </div>
 
 </section>
+
+<script>
+    function relocate_home()
+    {
+        location.href = "/appointmentList";
+    }
+</script>
 
 <jsp:include page="../include/footer.jsp" />
