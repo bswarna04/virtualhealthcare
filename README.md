@@ -4,4 +4,4 @@ Using VHC website, any user requiring virtual medical consultation can register 
 
 The user can edit and delete his records if needed. He can also cancel his scheduled appointments.
 
-The Admin of VHC can view all the users(patients) appointments and he will have rights to cancel the appointments. He can also view the medical recods of all the patients and he can both edit and delete the records of any user.
+The Admin of VHC can view all the users(patients) appointments and he will have rights to cancel the appointments. He can also view the medical records of all the patients and he can both edit and delete the records of any user.
