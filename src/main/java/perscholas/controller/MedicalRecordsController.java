@@ -60,7 +60,7 @@ public class MedicalRecordsController {
     public ModelAndView delete(@RequestParam Integer id) throws Exception {
 
         ModelAndView response = new ModelAndView();
-        //  response.setViewName("redirect:/registration-url-path/userList");
+
         response.setViewName("redirect:/viewrecords?editRecID=0");
         MedicalRecord delete= medicalRecordDao.findById(id);
         if(delete !=null){
@@ -79,7 +79,7 @@ public class MedicalRecordsController {
             medicalRecordDao.save(editRecord);
         }
         response.setViewName("redirect:/viewrecords?editRecID=0");
-//        response.addObject("editRecID",0);
+
         return response;
     }
 }
