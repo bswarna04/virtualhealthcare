@@ -9,8 +9,7 @@
 
         <div class="container min-vh-100">
 
-<%--            <h3 class="heading"><span>Medical Records</span></h3>--%>
-<%--<sec:authorize access="hasAnyAuthority('ADMIN')">--%>
+
 <form method="get" action="/medicalRecords">
 
     <h3 class="heading"><span>Medical Records</span></h3>
@@ -26,7 +25,7 @@
 
 
 </form>
-<%--</sec:authorize>--%>
+
 
 <form method="get" action="/saveRecord">
 <table class="table table-striped">
@@ -68,8 +67,11 @@
             <td><a href="${record.fileName}" target="_blank">${record.fileName}</a></td>
             <td><fmt:formatDate pattern="MM-dd-yyyy" value = "${record.dateUploaded}"/></td>
             <td>${record.patient.firstName} ${record.patient.lastName}</td>
-            <td><a href="/viewrecords?editRecID=${record.id}">Edit</a></td>
-            <td><a href="/deleteRecord?id=${record.id}">Delete</a></td>
+            <td><a class="btn btn-primary"  role="button" href="/viewrecords?editRecID=${record.id}">Edit</a></td>
+            <td><a class="btn btn-primary"  role="button" onclick="myFunction1()"
+               href="/deleteRecord?id=${record.id}">Delete</a></td>
+
+<%--            <td><a href="/deleteRecord?id=${record.id}">Delete</a></td>--%>
 
         </tr>
     </c:forEach>
@@ -84,7 +86,12 @@
         </div>
 
 </section>
+<script>
+    function myFunction1() {
+        confirm("Do you really want to delete this record?");
 
+    }
+</script>
 
 
 <%--<jsp:include page="../include/footer.jsp" />--%>

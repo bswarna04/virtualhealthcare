@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="../include/header.jsp" />
 
 <section class="registersubmit" id="registersubmit" >
@@ -8,8 +9,9 @@
         <br><br><br><br><br><br>
 
         <div>
-
-              <h2>Your appointment is successfully scheduled at "${appointmentdate} ${appointmenttime}"</h2>
+            <fmt:formatDate var="fmtDate" value="${appointmentdate}" pattern="MM/dd/yyyy"/>
+<%--            <fmt:formatDate pattern="MM-dd-yyyy" value = "${appointment.apptDate}"/>--%>
+              <h2>Your appointment is successfully scheduled at "${fmtDate} ${appointmenttime}"</h2>
 
         </div>
 

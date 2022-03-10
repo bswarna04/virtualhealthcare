@@ -1,5 +1,6 @@
 
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <jsp:include page="../include/header.jsp" />
@@ -33,11 +34,13 @@
             </div>
 
                  <div class="inputBox">
+
                      <input placeholder="Enter your Date of Birth" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" value="${formBeanKey.dateOfBirth}" name="dateOfBirth" />
 
 
                  </div>
                <div class="inputBox">
+
                <input type="text"  name="phoneNumber" value="${formBeanKey.phoneNumber}" placeholder="Enter PhoneNumber"  required>
 
                 </div>

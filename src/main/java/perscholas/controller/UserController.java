@@ -52,11 +52,13 @@ public class UserController {
         String saveFileName = saveFileDirectory.getAbsolutePath() + File.separator + file.getOriginalFilename();
         File targetFile = new File(saveFileName);
 
-        if ( targetFile.exists() ) {
-            throw new Exception("Unable to save uploaded file " + file.getOriginalFilename() + " because a file with that name already exists");
+        if ( !targetFile.exists() ) {
+            FileUtils.copyInputStreamToFile(file.getInputStream(), targetFile);
+
+//            throw new Exception("Unable to save uploaded file " + file.getOriginalFilename() + " because a file with that name already exists");
         }
 
-        FileUtils.copyInputStreamToFile(file.getInputStream(), targetFile);
+      //  FileUtils.copyInputStreamToFile(file.getInputStream(), targetFile);
 
         log.debug("Uploaded file saved to : " + targetFile.getAbsolutePath());
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();

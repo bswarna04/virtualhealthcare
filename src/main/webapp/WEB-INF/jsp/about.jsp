@@ -10,7 +10,7 @@
             <div class="col-md-6 content" >
 
                 <div class="box">
-                    <h3> <i class="fas fa-stethoscope"></i><a href="/appointmentform">Virtual Appointments</a></h3>
+                    <h3> <i class="fas fa-stethoscope"></i><a href="/appointmentList">Virtual Appointments</a></h3>
                     <p>Get virtual consultation anywhere from the world</p>
                 </div>
                 <div class="box">

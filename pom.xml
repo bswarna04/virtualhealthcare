@@ -128,6 +128,13 @@
 			<version>2.11.0</version>
 		</dependency>
 
+<!--		AWS S3-->
+<!--		<dependency>-->
+<!--			<groupId>com.amazonaws</groupId>-->
+<!--			<artifactId>aws-java-sdk</artifactId>-->
+<!--			<version>1.11.728</version>-->
+<!--		</dependency>-->
+
 
 		<!--test		-->
 		<dependency>

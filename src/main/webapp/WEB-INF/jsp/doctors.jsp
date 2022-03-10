@@ -8,7 +8,7 @@
     <div class="container">
 
         <h1 class="heading"><span> Our Doctors </span></h1><br>
-        <h1  style="text-align: center; background-color : steelblue"><span>Please select your doctor to make an appointment </span></h1><<br>
+        <h1  style="text-align: center; background-color : steelblue"><span>Please select your doctor to make an appointment </span></h1><br>
 
 
         <div class="box-container">
@@ -17,7 +17,7 @@
 
 
             <div class="box" >
-<%--                <input type="radio" name="select">--%>
+
                 <a href="/appointments?doctorid=${doctor.id}&doctorname=${doctor.firstName} ${doctor.lastName}" >
 
                     <h3 style="color:black;"> ${doctor.firstName} ${doctor.lastName}, ${doctor.specialization}</h3>
